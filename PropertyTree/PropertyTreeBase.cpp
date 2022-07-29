@@ -1188,6 +1188,7 @@ void PropertyTreeBase::revert()
 	interruptDrag();
 	_cancelWidget();
 	capturedRow_ = 0;
+	updateLayout();
 	storePersistentFocusElement();
 
 #ifdef PROFILE
