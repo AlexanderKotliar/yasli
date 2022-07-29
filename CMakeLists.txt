@@ -39,8 +39,6 @@ add_subdirectory(yasli-example)
 add_subdirectory(yasli-test)
 add_subdirectory(yasli-benchmark)
 
-add_subdirectory(XMath)
-
 if(NOT YASLI_NO_QT)
 	add_subdirectory(QPropertyTree)
 	add_subdirectory(QPropertyTree-example)

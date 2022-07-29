@@ -22,7 +22,7 @@ source_group("" FILES ${SOURCES})
 
 add_executable(ww-example WIN32 ${SOURCES})
 
-target_link_libraries(ww-example yasli wWidgets xmath)
+target_link_libraries(ww-example yasli wWidgets)
 set_target_properties(ww-example PROPERTIES DEBUG_POSTFIX "-debug")
 set_target_properties(ww-example PROPERTIES RELWITHDEBINFO_POSTFIX "-relwithdebinfo")
 set_target_properties(ww-example PROPERTIES RELEASE_POSTFIX "-release")

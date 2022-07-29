@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-//#include "xMath\xMath.h"
-
 #include "ww/PropertyEditor.h"
 #include "yasli/STL.h"
 #include "yasli/Pointers.h"
@@ -18,7 +16,8 @@
 #include "yasli/MemoryWriter.h"
 #include "ww/Decorators.h"
 #include "ww/SliderDecorator.h"
-#include "XMath/Colors.h"
+#include "ww/Color.h"
+#include "ww/Vect2.h"
 #include "ww/FileSelector.h"
 #include "ww/KeyPress.h"
 #include "ww/PropertyTree.h"
@@ -29,6 +28,8 @@ using ww::HLineDecorator;
 using ww::RadioDecorator;
 using ww::FileSelector;
 using ww::ButtonDecorator;
+using ww::Color;
+using ww::Vect2;
 
 enum USELESS_ENUM {
     FIRST_VALUE,
@@ -221,15 +222,15 @@ struct TestData
 	TestBases poly_vector;
     std::string name;
     std::wstring description;
-	Vect2i position;
-	Vect2i size;
-	Vect4f v4;
+	Vect2 position;
+	Vect2 size;
+	Vect2 v4;
 	BitVector<USELESS_FLAGS> flags;
     float fvalue;
-	Color4c colors[4];
-	Color4c color4c;
-	Color4c color4f;
-	Color4c color3c;
+	Color colors[4];
+	Color color4c;
+	Color color4f;
+	Color color3c;
 	std::string filename;
 	S1 s1;
 	S0 s0;
@@ -250,9 +251,9 @@ struct TestData
 
 	EnumType type;
 	ww::KeyPress hotkey;
-	std::vector<Vect2f> vects;
+	std::vector<Vect2> vects;
 	TestBase base;
-	std::vector<Color4c> Colors;
+	std::vector<Color> Colors;
 	std::vector<int> ints;
 
 	struct Influence 
@@ -381,10 +382,10 @@ struct TestData
 			ar(position, "position", "Position");
 			ar(size, "size", "Size");
 
-			std::vector<Color4f> comboList;
-			comboList.push_back(Color4f(1.0f, 0.0f, 0.0f));
-			comboList.push_back(Color4f(0.0f, 1.0f, 0.0f));
-			comboList.push_back(Color4f(0.0f, 0.0f, 1.0f));
+			std::vector<Color> comboList;
+			comboList.push_back(Color(255, 0, 0));
+			comboList.push_back(Color(0, 255, 0));
+			comboList.push_back(Color(0, 0, 255));
 
 			if(ar.isInput() || !ar.isEdit() || type == ENUM_STRINGS) {
                 ar(name, "name", "Name");

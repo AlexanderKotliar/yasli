@@ -10,7 +10,6 @@
 #pragma once
 
 #include "yasli/Assert.h"
-#include "XMath/round.h"
 
 #ifdef _WIN64
 #include <emmintrin.h>
@@ -33,6 +32,8 @@ char (&globalArrayLenHelper(const T(&)[Len]))[Len];
 #undef max
 
 namespace ww {
+
+inline int xround(float v) { return int(v + 0.5f); }
 
 inline int min(int x,int y){ return x < y ? x : y; }
 inline float min(float x,float y){ return x < y ? x : y; }
