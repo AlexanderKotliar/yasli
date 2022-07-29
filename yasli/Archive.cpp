@@ -15,13 +15,6 @@
 
 namespace yasli {
 
-YASLI_INLINE Context::Context()
-: archive(0)
-, object(0)
-, previousContext(0)
-{
-}
-
 YASLI_INLINE Context::~Context() {
 	if (archive)
 		archive->setLastContext(previousContext);
@@ -30,9 +23,9 @@ YASLI_INLINE Context::~Context() {
 // ---------------------------------------------------------------------------
 
 YASLI_INLINE Archive::Archive(int caps)
-: lastContext_(0)
-, caps_(caps)
+: caps_(caps)
 , filter_(YASLI_DEFAULT_FILTER)
+, lastContext_(0)
 {
 }
 

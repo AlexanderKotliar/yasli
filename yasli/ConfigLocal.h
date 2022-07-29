@@ -1,2 +1,2 @@
-
-
+#define YASLI_STD_PAIR_FIRST_SECOND 1
+#define YASLI_NO_RTTI 2

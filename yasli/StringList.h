@@ -48,8 +48,8 @@ public:
 	StringListStaticValue(const StringListStaticValue& original)
 	: stringList_(original.stringList_)
 	, index_(original.index_)
-	, type_(original.type_)
 	, handle_(original.handle_)
+	, type_(original.type_)
 	{
 	}
     StringListStaticValue(const StringListStatic& stringList, int value)

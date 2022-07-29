@@ -52,12 +52,11 @@ bool serializeEnum(const EnumDescription& desc, Archive& ar, Enum& value, const 
 // You may have multiple contexts of different types, but note that the context
 // lookup complexity is O(n) in respect to number of contexts.
 struct Context {
-	void* object;
+	void* object = 0;
 	TypeID type;
-	Context* previousContext;
-	Archive* archive;
+	Context* previousContext = 0;
+	Archive* archive = 0;
 
-	Context();
 	template<class T>
 	void set(T* object);
 	template<class T>
