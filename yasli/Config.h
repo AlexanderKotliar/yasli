@@ -31,10 +31,6 @@
 #define YASLI_NO_RTTI 1
 #endif
 
-#ifndef YASLI_NO_FCVT
-#define YASLI_NO_FCVT 0
-#endif
-
 // Disable extra struct-level for polymorphic pointer serialization
 #ifndef YASLI_NO_EXTRA_BLOCK_FOR_POINTERS
 #define YASLI_NO_EXTRA_BLOCK_FOR_POINTERS 0

@@ -9,7 +9,6 @@
 
 #include "StdAfx.h"
 #include "yasli/Assert.h"
-#include "yasli/Config.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -49,8 +48,6 @@ void MemoryWriter::reallocate(size_t newSize)
 {
     YASLI_ASSERT(newSize > size_);
     size_t pos = position();
-    // Supressing the warning as we generally don't handle malloc errors.
-    // cppcheck-suppress memleakOnRealloc
     memory_ = (char*)::realloc(memory_, newSize + 1);
     YASLI_ASSERT(memory_ != 0);
     position_ = memory_ + pos;
@@ -114,7 +111,7 @@ MemoryWriter& MemoryWriter::operator<<(i8 value)
     return operator<<((const char*)buffer);
 }
 
-inline void cutTrailingZeros(const char* str)
+inline void cutRightZeros(const char* str)
 {
 	for(char* p = (char*)str + strlen(str) - 1; p >= str; --p)
 		if(*p == '0')
@@ -125,13 +122,13 @@ inline void cutTrailingZeros(const char* str)
 
 MemoryWriter& MemoryWriter::operator<<(double value)
 {
-	appendAsString(value, true);
+	appendAsString(value);
 	return *this;
 }
 
-void MemoryWriter::appendAsString(double value, bool allowTrailingPoint)
+void MemoryWriter::appendAsString(double value)
 {
-#if YASLI_NO_FCVT
+#if defined(__ANDROID__) || defined(__APPLE__)
 	char buf[64] = { 0 };
 	sprintf(buf, "%f", value);
 	cutRightZeros(buf);
@@ -142,19 +139,23 @@ void MemoryWriter::appendAsString(double value, bool allowTrailingPoint)
 	int sign = 0;
 
   const int CVTBUFSIZE = 400;
-  char buf[CVTBUFSIZE];
 #ifdef _MSC_VER
-	_fcvt_s(buf, value, digits_, &point, &sign);
+  char buf[CVTBUFSIZE];
+  _fcvt_s(buf, value, digits_, &point, &sign);
 #elif (defined _WIN32) // mingw
+  char buf[CVTBUFSIZE];
   _fcvt_s(buf, CVTBUFSIZE, value, digits_, &point, &sign);
+#elif (defined __EMSCRIPTEN__) // not thread-safe!!!
+  const char* buf = fcvt(value, digits_, &point, &sign);
 #else
+  char buf[CVTBUFSIZE];
   fcvt_r(value, digits_, &point, &sign, buf, CVTBUFSIZE);
 #endif
 
-    if(sign != 0)
-        write("-");
-    if(point <= 0){
-		cutTrailingZeros(buf);
+  if(sign != 0)
+      write("-");
+  if(point <= 0){
+		cutRightZeros(buf);
 		if (strlen(buf)){
 			write("0.");
 			while (point < 0){
@@ -164,18 +165,16 @@ void MemoryWriter::appendAsString(double value, bool allowTrailingPoint)
 			write((const char*)buf);
 		}
 		else
-			write(allowTrailingPoint ? "0" : "0.0");
-		*position_ = '\0';
-    }
-    else{
-        write(buf, point);
-        write(".");
-		if (allowTrailingPoint)
-			cutTrailingZeros(buf + point);
-		else if (buf[point] != '\0')
-			cutTrailingZeros(buf + point + 1);
-		operator<<(buf + point);
-    }
+			write("0.0");
+  }
+  else{
+    write(buf, point);
+    write(".");
+    const char* fraction = buf + point;
+  	cutRightZeros(fraction);
+		write(strlen(fraction) ? fraction : "0");
+  }
+  *position_ = '\0';
 #endif
 }
 
@@ -189,7 +188,7 @@ MemoryWriter& MemoryWriter::operator<<(const char* value)
 
 MemoryWriter& MemoryWriter::operator<<(const wchar_t* value)
 {
-#if defined(ANDROID_NDK) || defined(NACL)
+#if defined(__ANDROID__) 
 	YASLI_ASSERT(0, "Not implemented");
 	return *this;
 #else

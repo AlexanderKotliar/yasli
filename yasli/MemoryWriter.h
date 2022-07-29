@@ -10,7 +10,6 @@
 #pragma once
 
 #include <cstddef>
-#include <yasli/Config.h>
 #include "Pointers.h"
 
 namespace yasli{
@@ -39,7 +38,7 @@ public:
 	MemoryWriter& operator<<(char value);
 	MemoryWriter& operator<<(const char* value);
 	MemoryWriter& operator<<(const wchar_t* value);
-	void appendAsString(double, bool allowTrailingPoint);
+	void appendAsString(double);
 
 	// Binary interface (does not writes trailing '\0')
 	template<class T>
