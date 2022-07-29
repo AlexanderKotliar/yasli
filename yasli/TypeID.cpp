@@ -2,6 +2,7 @@
 
 namespace yasli {
 
+#if YASLI_NO_RTTI
 YASLI_INLINE void TypeInfo::cleanTypeName(char*& d, const char* dend, const char*& s, const char* send)
 {
 	if(strncmp(s, "class ", 6) == 0)
@@ -28,11 +29,11 @@ YASLI_INLINE void TypeInfo::cleanTypeName(char*& d, const char* dend, const char
 			++d;
 			++s;
 			cleanTypeName(d, dend, s, send);
+			if (d == dend)
+				return;
 		}
-		else if (*s == '>') {
-			*d = '\0';
+		else if (*s == '>') 
 			return;
-		}
 		*d = *s;
 		++s;
 		++d;
@@ -88,8 +89,11 @@ YASLI_INLINE void TypeInfo::extractTypeName(char *name, int nameLen, const char*
 
 	// This assertion is not critical, but may result in collision as
 	// stripped name wil be used, e.g. for lookup in factory.
+#if YASLI_NO_RTTI == 1
 	YASLI_ASSERT(s == send && "Type name does not fit into the buffer");
+#endif
 }
+#endif
 
 YASLI_INLINE bool TypeID::operator==(const TypeID& rhs) const{
 #if YASLI_NO_RTTI
