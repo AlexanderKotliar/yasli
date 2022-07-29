@@ -1140,7 +1140,7 @@ size_t PropertyRow::count() const
 
 PropertyRow* PropertyRow::findByAddress(const void* addr)
 {
-    if(searchHandle() == addr)
+    if(searchHandle() == addr || serializer().pointer() == addr)
         return this;
     else{
 		int num = count();
