@@ -237,7 +237,8 @@ public:
 	short x,y;
 
 	Vect2s()										{ }
-	Vect2s(int x_,int y_)							{ x = x_; y = y_; }
+  explicit Vect2s(float x_) { x = y = x_; }
+  Vect2s(int x_,int y_)							{ x = x_; y = y_; }
 
 	Vect2s(const Vect2f& v)			{ x = xround(v.x); y = xround(v.y); }
 	Vect2s(const Vect2i& v)			{ x = v.x; y = v.y; }
