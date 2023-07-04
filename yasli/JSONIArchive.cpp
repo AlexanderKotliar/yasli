@@ -376,7 +376,7 @@ static const char charTypes[256] = {
 	0 /* 0xCF: П */,
 
 
-	0 /* 0xD0: �  */,
+	0 /* 0xD0: �  */,
 	0 /* 0xD1: С */,
 	0 /* 0xD2: Т */,
 	0 /* 0xD3: У */,
@@ -544,7 +544,7 @@ bool JSONIArchive::load(const char* filename)
 
 		void* buffer = 0;
 		if(fileSize > 0){
-			buffer = new char[fileSize + 1];
+			buffer = malloc(fileSize + 1);
 			YASLI_ASSERT(buffer != 0);
 			memset(buffer, 0, fileSize + 1);
 			size_t elementsRead = fread(buffer, fileSize, 1, file);

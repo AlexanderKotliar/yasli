@@ -81,8 +81,6 @@ protected:
 class StringList: public StringListBase{
 public:
     StringList() {}
-    StringList(const StringList& rhs) : StringListBase(rhs){
-    }
     StringList(const StringListStatic& rhs){
         const int size = int(rhs.size());
         resize(size);
@@ -104,15 +102,10 @@ public:
 class StringListValue{
 public:
     explicit StringListValue(const StringListStaticValue &value)
-	{
+	  {
         stringList_.insert( stringList_.end(), value.stringList().begin(), value.stringList().end() );
         index_ = value.index();
-	}
-    StringListValue(const StringListValue &value)
-	{
-		stringList_ = value.stringList_;
-        index_ = value.index_;
-	}
+	  }
     explicit StringListValue(const StringList& stringList = StringList::EMPTY, int value = StringList::npos)
     : stringList_(stringList)
     , index_(value)

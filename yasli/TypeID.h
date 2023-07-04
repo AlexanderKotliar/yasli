@@ -28,24 +28,7 @@ struct TypeInfo;
 class TypeID{
 	friend class TypesFactory;
 public:
-	TypeID()
-	: 
-#if YASLI_NO_RTTI
-	runtimeID_(0),
-#endif
-    typeInfo_(0)
-	{}
-
-	TypeID(const TypeID& original)
-	:
-	typeInfo_(original.typeInfo_),
-#if !YASLI_NO_RTTI
-	name_(original.name_)
-#else
-	runtimeID_(original.runtimeID_)
-#endif
-	{
-	}
+	TypeID(){}
 
 #if !YASLI_NO_RTTI
 	explicit TypeID(const type_info& typeInfo)
@@ -102,15 +85,15 @@ public:
 #endif
 private:
 #if YASLI_NO_RTTI 
-	unsigned int runtimeID_;
-	TypeInfo* typeInfo_;
-    friend class bTypeInfo;
+	unsigned int runtimeID_ = 0;
+	TypeInfo* typeInfo_ = 0;
+  friend class bTypeInfo;
 #else
-	const type_info* typeInfo_;
+	const type_info* typeInfo_ = 0;
 	string name_;
 #endif
 	friend class TypeDescription;
-    friend struct TypeInfo;
+  friend struct TypeInfo;
 };
 
 #if YASLI_NO_RTTI

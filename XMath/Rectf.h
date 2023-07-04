@@ -61,13 +61,15 @@ public:
 	float width() const{ return max_.x - min_.x; }
 	float height() const{ return max_.y - min_.y; }
 
-  bool pointInside(Vect2f point) const {
+  bool pointInside(const Vect2f& point) const {
     if ( point.x < min_.x || point.x > max_.x )
       return false;
     if ( point.y < min_.y || point.y > max_.y )
       return false;
     return true;
   }
+
+  Vect2f clamp(const Vect2f& point) const { return Vect2f(::clamp(point.x, min_.x, max_.x), ::clamp(point.y, min_.y, max_.y)); }
 
   Rectf& operator+=(const Rectf& rect);
 
