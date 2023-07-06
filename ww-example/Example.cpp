@@ -17,10 +17,10 @@
 #include "yasli/TextOArchive.h"
 #include "yasli/TextIArchive.h"
 
-#include "TestData.h"
-
 #include <string>
 #include <windows.h>
+
+using namespace yasli;
 
 class MainWindow : public ww::Window{
 public:
@@ -30,9 +30,6 @@ public:
 protected:
 	ww::Application* app_;
 };
-
-TestData testData;
-TestData testData1;
 
 MainWindow::MainWindow(ww::Application& app)
 : app_(&app)
