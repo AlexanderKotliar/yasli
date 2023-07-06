@@ -15,7 +15,6 @@ set(SOURCES
 	ExamplePolymorphicTree.cpp
 	ExampleTable.cpp
 	ExampleTwoTrees.cpp
-	TestData.cpp
 	Resource.h
   )
 source_group("" FILES ${SOURCES})
