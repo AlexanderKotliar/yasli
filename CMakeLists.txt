@@ -38,8 +38,8 @@ add_subdirectory(XMath)
 #add_subdirectory(QPropertyTree)
 #add_subdirectory(QPropertyTree-example)
 
-# if (MSVC)
-#   add_subdirectory(ww)
-#   add_subdirectory(ww-example)
-# endif (MSVC)
+if (MSVC)
+  add_subdirectory(ww)
+  add_subdirectory(ww-example)
+endif (MSVC)
 
