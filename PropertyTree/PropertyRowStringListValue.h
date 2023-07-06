@@ -61,7 +61,7 @@ public:
 		if (userWidgetToContent())
 			return widthCache_.getOrUpdate(tree, this, tree->_defaultRowHeight());
 		else
-			return 80;
+			return userWidgetSize() ? userWidgetSize() : 80;
 	}
 	WidgetPlacement widgetPlacement() const override{ return WIDGET_VALUE; }
 	const void* searchHandle() const override { return handle_; }
@@ -130,12 +130,12 @@ public:
 
 	bool isLeaf() const override{ return true; }
 	bool isStatic() const override{ return false; }
-	int widgetSizeMin(const PropertyTreeBase* tree) const override
+  int widgetSizeMin(const PropertyTreeBase* tree) const override
 	{
 		if (userWidgetToContent())
 			return widthCache_.getOrUpdate(tree, this, tree->_defaultRowHeight());
 		else
-			return 80;
+			return userWidgetSize() ? userWidgetSize() : 80;
 	}
 	WidgetPlacement widgetPlacement() const override{ return WIDGET_VALUE; }
 	const void* searchHandle() const override { return handle_; }

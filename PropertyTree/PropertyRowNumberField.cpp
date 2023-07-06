@@ -119,7 +119,7 @@ int PropertyRowNumberField::widgetSizeMin(const PropertyTreeBase* tree) const
 	if (userWidgetToContent())
 		return widthCache_.getOrUpdate(tree, this, 0);
 	else
-		return 40;
+		return userWidgetSize() ? userWidgetSize() : 40;
 }
 
 // ---------------------------------------------------------------------------
