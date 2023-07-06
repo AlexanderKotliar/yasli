@@ -14,6 +14,9 @@ using yasli::Archive;
 using yasli::SharedPtr;
 using property_tree::Color;
 
+#include "../ww-example/generator.h"
+#include "../ww-example/generator.cpp"
+
 class ConditionBase : public yasli::RefCounter
 {
 public:
@@ -228,7 +231,8 @@ struct PolymorphicTreeData
 {
 	void serialize(Archive& ar)
 	{
-		ar(condition_, "condition", "<Condition");
+    ar(generator, "generator", "generator");
+    ar(condition_, "condition", ">40>Condition");
 		ar(yasli::HorizontalLine(), "", "<");
 		ar(action_, "action", "<Action");
 	}
