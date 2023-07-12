@@ -109,8 +109,3 @@ namespace yasli {
 // Can be used to override YASLI_ASSERT and YASLI_CHECK, see yasli/Assert.h
 #ifndef YASLI_ASSERT_DEFINED
 #endif
-
-// To control dependency of ww
-// #ifdef WIN32
-// #define XMATH_USE_WW_COLOR
-// #endif

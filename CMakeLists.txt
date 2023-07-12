@@ -33,8 +33,6 @@ add_subdirectory(yasli)
 #add_subdirectory(yasli-example)
 #add_subdirectory(yasli-test)
 
-add_subdirectory(XMath)
-
 #add_subdirectory(QPropertyTree)
 #add_subdirectory(QPropertyTree-example)
 

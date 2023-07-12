@@ -65,7 +65,6 @@ set(SOURCES
 	Application.cpp
 	Box.cpp
 	Button.cpp
-	Canvas.cpp
 	CheckBox.cpp
 	CheckComboBox.cpp
 	Clipboard.cpp
@@ -108,7 +107,6 @@ set(SOURCES
 	Tooltip.cpp
 	Unicode_ww.cpp
 	Vect2.cpp
-	Viewport2D.cpp
 	Widget.cpp
 	Win32Proxy.cpp
 	Window.cpp
@@ -119,7 +117,6 @@ set(SOURCES
 	Application.h
 	Box.h
 	Button.h
-	Canvas.h
 	CheckBox.h
 	CheckComboBox.h
 	ClassMenu.h
@@ -178,7 +175,6 @@ set(SOURCES
 	Unicode.h
 	VBox.h
 	Vect2.h
-	Viewport2D.h
 	VSplitter.h
 	WaitCursor.h
 	Widget.h
