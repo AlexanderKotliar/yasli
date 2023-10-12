@@ -75,9 +75,6 @@ public:
 		return it_ != container_->end();
 	}
 
-	void* elementPointer() const{ return &*it_; }
-  size_t elementSize() const { return sizeof(typename Container::value_type); }
-
 	bool operator()(Archive& ar, const char* name, const char* label){
 		YASLI_ESCAPE(container_, return false);
 		if(it_ == container_->end())
@@ -88,7 +85,6 @@ public:
 		else
 			return ar(*it_, name, label);
 	}
-	operator bool() const{ return container_ != 0; }
 
 	struct ElementInitializer
 	{

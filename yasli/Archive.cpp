@@ -152,9 +152,7 @@ struct MapToArrayBase : ContainerInterface {
 	TypeID elementType() const override { return {}; }
 	TypeID containerType() const override { return map.containerType(); }
 	bool next() override { return map.next(); }
-	void* elementPointer() const override { return nullptr; }
 
-	operator bool() const override { return !map.isEmpty(); }
 	void serializeNewElement(Archive& ar, const char* name = "", const char* label = 0) const override {
 		struct KeyValueNew {
 			const MapToArrayBase& map;
