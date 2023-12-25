@@ -80,7 +80,7 @@ public:
 	~BinOArchive() {}
 
 	void clear();
-	size_t length() const;
+	size_t length() const { return stream_.position(); }
 	const char* buffer() const { return stream_.buffer(); }
 	bool save(const char* fileName);
 
@@ -107,7 +107,6 @@ public:
 	using Archive::operator();
 
 private:
-	void openContainer(const char* name, int size, const char* typeName);
 	void openNode(const char* name, bool size8 = true);
 	void closeNode(const char* name, bool size8 = true);
 
@@ -164,18 +163,18 @@ private:
 
 		  bool get(const char* name, Block& block);
 
-		  void read(void *data, int size)
+		  void read(void *data, int size, bool silent)
 		  {
 			  if(curr_ + size <= end_){
 				memcpy(data, curr_, size);
 				curr_ += size;	
 			  }
-			  else
+			  else if(!silent)
 				  YASLI_ASSERT(0);
 		  }
 
 		  template<class T>
-		  void read(T& x){ read(&x, sizeof(x)); }
+		  void read(T& x, bool silent = false){ read(&x, sizeof(x), silent); }
 
 		  void read(std::string& s)
 		  {

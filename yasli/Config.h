@@ -23,6 +23,10 @@
 #define YASLI_NO_EXTRA_BLOCK_FOR_POINTERS 0
 #endif
 
+#ifndef YASLI_SERIALIZE_RAW_POINTERS
+#define YASLI_SERIALIZE_RAW_POINTERS 0
+#endif
+
 // Default filter for Archive: 0 - strict mode, -1 - silent mode.
 #ifndef YASLI_DEFAULT_FILTER
 #define YASLI_DEFAULT_FILTER 0
@@ -42,6 +46,7 @@
 #endif
 
 #define YASLI_BIN_ARCHIVE_LEGACY_HASH 1
+#define YASLI_BIN_ARCHIVE_CONTAINER_POD_SIZE 1
 
 // This allows to change the name of global serialization function and
 // serialization method to match the coding conventions of the codebase.

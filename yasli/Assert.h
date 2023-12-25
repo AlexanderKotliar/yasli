@@ -48,6 +48,9 @@ inline bool assertionDialog(const char* function, const char* fileName, int line
 #else
 #define YASLI_ASSERT(expr, ...) (1, true)
 #define YASLI_CHECK(expr, ...) (expr)
+namespace yasli {
+  inline bool assertionDialog(const char* function, const char* fileName, int line, const char* expr) { return false; }
+}
 #endif
 
 // use YASLI_CHECK instead

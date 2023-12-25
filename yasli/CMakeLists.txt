@@ -13,6 +13,7 @@ set(SOURCES
 	Archive.cpp Archive.h
 	Assert.cpp Assert.h
 	BinArchive.cpp BinArchive.h
+	StreamArchive.cpp StreamArchive.h
 	BitVector.h BitVectorImpl.h
 	ClassFactory.cpp ClassFactory.h ClassFactoryBase.h
 	Config.h ConfigLocal.h
