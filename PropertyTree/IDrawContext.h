@@ -49,7 +49,7 @@ struct IDrawContext
 
 	virtual void drawControlButton(const Rect& rect, const char* text, int buttonFlags, property_tree::Font font) = 0;
 	virtual void drawButton(const Rect& rect, const char* text, int buttonFlags, property_tree::Font font) = 0;
-	virtual void drawCheck(const Rect& rect, bool disabled, CheckState checked) = 0;
+	virtual void drawCheck(const Rect& rect, bool disabled, property_tree::CheckState checked) = 0;
 	virtual void drawColor(const Rect& rect, const Color& color) = 0;
 	virtual void drawComboBox(const Rect& rect, const char* text) = 0;
 	virtual void drawEntry(const Rect& rect, const char* text, bool pathEllipsis, bool grayBackground, int trailingOffset) = 0;
@@ -65,4 +65,5 @@ struct IDrawContext
 
 }
 
-using namespace property_tree; // temporary
+using property_tree::IDrawContext;
+

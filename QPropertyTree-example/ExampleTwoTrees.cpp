@@ -26,7 +26,7 @@ struct Node
 	std::string name_;
 	bool enabled_;
 	bool favourite_;
-	Color color_;
+  property_tree::Color color_;
 	float weight_;
 	bool isRoot_;
 

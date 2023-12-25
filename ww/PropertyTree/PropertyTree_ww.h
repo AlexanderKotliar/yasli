@@ -61,6 +61,8 @@ public:
 	bool hasFocus() const;
 	bool hasFocusOrInplaceHasFocus() const override;
 
+  	void revert() { ::PropertyTree::revert(); }
+
 	// internal methods:
 	Vect2 _toScreen(Vect2 point) const;
 	void _setFocus();

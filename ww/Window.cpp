@@ -151,7 +151,7 @@ LRESULT WindowImpl::onMessage(UINT message, WPARAM wparam, LPARAM lparam)
 	switch(message){
 	case WM_SYSCOLORCHANGE:
 		{
-			DrawingCache::get()->flush();
+      property_tree::DrawingCache::get()->flush();
 			break;
 		}
 	case WM_CREATE:

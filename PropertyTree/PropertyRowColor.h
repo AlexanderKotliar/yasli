@@ -23,6 +23,6 @@ public:
 	bool isLeaf() const override{ return false; }
 	bool isStatic() const override{ return false; }
 private:
-	Color value_;
+	property_tree::Color value_;
 };
 

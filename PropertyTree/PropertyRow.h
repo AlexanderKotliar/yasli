@@ -33,6 +33,7 @@ class IMenu;
 class InplaceWidget;
 }
 using property_tree::KeyEvent;
+using property_tree::IMenu;
 
 using std::vector;
 class PropertyTree;
@@ -203,7 +204,7 @@ public:
 	Rect plusRect(const PropertyTree* tree) const;
 	Rect floorRect(const PropertyTree* tree) const;
 	void adjustHoveredRect(Rect& hoveredRect);
-	Font rowFont(const PropertyTree* tree) const;
+	property_tree::Font rowFont(const PropertyTree* tree) const;
 
 	void drawRow(IDrawContext& x, const PropertyTree* tree, int rowIndex, bool selectionPass);
 

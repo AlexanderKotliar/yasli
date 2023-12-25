@@ -14,6 +14,8 @@
 #include "yasli/ClassFactory.h"
 #include "Serialization.h"
 
+using namespace property_tree;
+
 YASLI_CLASS(PropertyRow, PropertyRowBool, "bool");
 
 PropertyRowBool::PropertyRowBool()

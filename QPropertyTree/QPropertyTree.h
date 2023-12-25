@@ -24,7 +24,8 @@ class QScrollBar;
 class QPropertyTree;
 
 namespace property_tree { 
-class QDrawContext; 
+class QDrawContext;
+class QUIFacade;
 class IMenu;
 }
 
@@ -143,7 +144,7 @@ protected:
 	int paintTime_;
 
 	friend class property_tree::QDrawContext;
-	friend class QUIFacade;
+	friend property_tree::QUIFacade;
 	friend struct PropertyTreeMenuHandler;
 	friend class FilterEntry;
 	friend class DragWindow;

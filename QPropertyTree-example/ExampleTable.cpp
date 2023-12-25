@@ -14,7 +14,7 @@ struct TableItem
 	bool favourite_;
 	std::string name_;
 	bool enabled_;
-	Color color_;
+  property_tree::Color color_;
 	float weight_;
 
 

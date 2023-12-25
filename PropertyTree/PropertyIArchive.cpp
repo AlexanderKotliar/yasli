@@ -18,6 +18,7 @@
 #include "PropertyRowObject.h"
 #include "Unicode.h"
 
+using property_tree::fromWideChar;
 using yasli::TypeID;
 
 PropertyIArchive::PropertyIArchive(PropertyTreeModel* model, PropertyRow* root)

@@ -26,6 +26,7 @@ struct Color;
 class IMenu;
 struct IUIFacade; 
 struct KeyEvent;
+class QDrawContext;
 }
 using property_tree::IUIFacade;
 using property_tree::KeyEvent;
@@ -209,9 +210,9 @@ protected:
 	bool dragCheckValue_;
 
 	friend class DragWindow;
-	friend class QDrawContext;
+	friend property_tree::QDrawContext;
 	friend struct FilterVisitor;
 	friend struct PropertyTreeMenuHandler;
-    friend struct ContainerMenuHandler;
+  friend struct ContainerMenuHandler;
 	friend class PropertyTreeModel;
 };
