@@ -178,7 +178,7 @@ public:
 			return TypeID();
 		return it->second->description().typeID();
 #else
-		return TypeID(typeid(*ptr));
+		return TypeID(typeid(*ptr), sizeof(*ptr));
 #endif
 	}
 

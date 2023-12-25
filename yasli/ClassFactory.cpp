@@ -39,7 +39,7 @@ size_t TypeID::sizeOf() const{
 	else
 		return 0;
 #else
-	return 0;
+	return sizeOf_;
 #endif
 }
 
@@ -47,7 +47,9 @@ bool YASLI_SERIALIZE_OVERRIDE(Archive& ar, TypeIDWithFactory& value, const char*
 {
 	std::string typeName;
 	if(ar.isOutput()){
-		typeName = value.factory->descriptionByType(value.type)->name();
+    const TypeDescription* desc = value.factory->descriptionByType(value.type);
+    if(YASLI_CHECK(desc, "Unregistered in factory: %s", value.type.name()))
+		  typeName = value.factory->descriptionByType(value.type)->name();
 		return ar(typeName, name);
 	}
 	else{

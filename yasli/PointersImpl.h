@@ -122,6 +122,49 @@ protected:
 	PolyPtr<T>& ptr_;
 };
 
+#if YASLI_SERIALIZE_RAW_POINTERS
+template<class T>
+class RawPtrSerializer : public PointerInterface
+{
+public:
+  RawPtrSerializer(T*& ptr)
+    : ptr_(ptr)
+  {}
+
+  TypeID type() const {
+    if (ptr_)
+      return ClassFactory<T>::the().getTypeID(ptr_);
+    else
+      return TypeID();
+  }
+  void create(TypeID type) const {
+    if(ptr_) {
+      delete ptr_;
+      ptr_ = 0;
+    }
+    if (type)
+      ptr_ = ClassFactory<T>::the().create(type);
+  }
+  TypeID baseType() const { return TypeID::get<T>(); }
+  virtual Serializer serializer() const {
+    return Serializer(*ptr_);
+  }
+  void* get() const {
+    return reinterpret_cast<void*>(ptr_);
+  }
+  ClassFactoryBase* factory() const { return &ClassFactory<T>::the(); }
+protected:
+  T*& ptr_;
+};
+
+  template<class T>
+bool YASLI_SERIALIZE_OVERRIDE(yasli::Archive& ar, T*& ptr, const char* name, const char* label)
+{
+  yasli::RawPtrSerializer<T> serializer(ptr);
+  return ar(static_cast<yasli::PointerInterface&>(serializer), name, label);
+}
+#endif
+
 template<class T>
 AsObjectWrapper<SharedPtr<T> > asObject(SharedPtr<T>& ptr)
 {
@@ -160,7 +203,6 @@ bool YASLI_SERIALIZE_OVERRIDE(yasli::Archive& ar, yasli::PolyPtr<T>& ptr, const 
 	yasli::PolyPtrSerializer<T> serializer(ptr);
 	return ar(static_cast<yasli::PointerInterface&>(serializer), name, label);
 }
-
 
 template<class T>
 bool YASLI_SERIALIZE_OVERRIDE(yasli::Archive& ar, yasli::AsObjectWrapper<yasli::SharedPtr<T> >& ptr, const char* name, const char* label)

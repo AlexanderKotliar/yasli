@@ -31,8 +31,8 @@ public:
 	TypeID(){}
 
 #if !YASLI_NO_RTTI
-	explicit TypeID(const type_info& typeInfo)
-	: typeInfo_(&typeInfo)
+	explicit TypeID(const type_info& typeInfo, std::size_t sizeOf)
+	: typeInfo_(&typeInfo), sizeOf_(sizeOf)
 	{
 	}
 #endif
@@ -90,6 +90,7 @@ private:
   friend class bTypeInfo;
 #else
 	const type_info* typeInfo_ = 0;
+  std::size_t sizeOf_ = 0;
 	string name_;
 #endif
 	friend class TypeDescription;
@@ -247,7 +248,7 @@ TypeID TypeID::get()
 # endif
 	return typeInfo.id;
 #else
-	static TypeID result(typeid(T));
+	static TypeID result(typeid(T), sizeof(T));
 	return result;
 #endif
 }

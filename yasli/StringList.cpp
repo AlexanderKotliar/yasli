@@ -90,9 +90,10 @@ bool YASLI_SERIALIZE_OVERRIDE(Archive& ar, StringListStaticValue& value, const c
         std::string str;
         if(ar.isOutput())
             str = value.c_str();
-        if(ar(str, name, label) && ar.isInput()){
+        if(ar(str, name, label)){
+          if(ar.isInput())
             value = str.c_str();
-            return true;
+          return true;
         }
         return false;
     }

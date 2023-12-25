@@ -65,6 +65,7 @@ public:
 	StringListStatic labelCombination(int bitVector) const;
 	bool registered() const { return !names_.empty(); }
 	TypeID type() const{ return type_; }
+
 private:
 	StringListStatic names_;
 	StringListStatic labels_;
@@ -80,11 +81,16 @@ private:
 	typedef std::map<int, const char*> ValueToLabel;
 	ValueToName valueToLabel_;
 	std::vector<int> values_;
+
+protected:
 	TypeID type_;
 };
 
 template<class Enum>
 class EnumDescriptionImpl : public EnumDescription{
+  EnumDescriptionImpl() {
+    type_ = TypeID::get<Enum>();
+  }
 public: static EnumDescription& the(){
 		static EnumDescriptionImpl description;
 		return description;
@@ -100,6 +106,9 @@ template<class Enum>
 bool serializeEnum(const EnumDescription& desc, Archive& ar, Enum& value, const char* name, const char* label){
 	return desc.serialize(ar, value, name, label);
 }
+
+template<class E>
+const char* enumLabel(E e) { return getEnumDescription<E>().label(e); }
 
 }
 

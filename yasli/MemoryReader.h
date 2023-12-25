@@ -26,7 +26,7 @@ public:
 
     template<class T>
     void read(T& value){
-        read(reinterpret_cast<void*>(&value), sizoef(value));
+        read(reinterpret_cast<void*>(&value), sizeof(value));
     }
     void read(void* data, size_t size);
     bool checkedSkip(size_t size);
@@ -42,7 +42,7 @@ public:
     const char* begin() const{ return memory_; }
     const char* end() const{ return memory_ + size_; }
 private:
-    size_t size_;
+    size_t size_ = 0;
     const char* position_;
     const char* memory_;
     bool ownedMemory_;

@@ -102,7 +102,7 @@ StringListStatic EnumDescription::labelCombination(int bitVector) const
 
 int EnumDescription::indexByValue(int value) const
 {
-	if(!YASLI_CHECK(!valueToIndex_.empty()))
+	if(!YASLI_CHECK(!valueToIndex_.empty(), "\"%s\" not registered value %i", type().name(), value))
 		return 0;
     ValueToIndex::const_iterator it = valueToIndex_.find(value);
 	if(!YASLI_CHECK(it != valueToIndex_.end()))

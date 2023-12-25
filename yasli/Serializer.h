@@ -109,10 +109,7 @@ public:
 	virtual TypeID containerType() const = 0;
 	virtual bool next() = 0;
 
-	virtual void* elementPointer() const = 0;
-
 	virtual bool operator()(Archive& ar, const char* name, const char* label) = 0;
-	virtual operator bool() const = 0;
 	virtual void serializeNewElement(Archive& ar, const char* name = "", const char* label = 0) const = 0;
 };
 
@@ -136,14 +133,12 @@ public:
 	void* pointer() const{ return reinterpret_cast<void*>(array_); }
 	TypeID containerType() const{ return TypeID::get<T[Size]>(); }
 	TypeID elementType() const{ return TypeID::get<T>(); }
-	void* elementPointer() const{ return &array_[index_]; }
 	virtual bool isFixedSize() const{ return true; }
 
 	bool operator()(Archive& ar, const char* name, const char* label){
 		YASLI_ESCAPE(size_t(index_) < Size, return false);
 		return ar(array_[index_], name, label);
 	}
-	operator bool() const{ return array_ != 0; }
 	bool next(){
 		++index_;
 		return size_t(index_) < Size;
