@@ -12,7 +12,7 @@
 
 inline int xround(float v)
 {
-	return int(v + 0.5f);
+	return lroundf(v);
 }
 
 inline int min(int a, int b)

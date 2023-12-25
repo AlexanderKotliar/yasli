@@ -33,7 +33,7 @@ char (&globalArrayLenHelper(const T(&)[Len]))[Len];
 
 namespace ww {
 
-inline int xround(float v) { return int(v + 0.5f); }
+inline int xround(float v) { return lroundf(v); }
 
 inline int min(int x,int y){ return x < y ? x : y; }
 inline float min(float x,float y){ return x < y ? x : y; }

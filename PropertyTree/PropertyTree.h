@@ -176,8 +176,8 @@ private:
 	PropertyTree(const PropertyTree&);
 	PropertyTree& operator=(const PropertyTree&);
 protected:
-	std::auto_ptr<PropertyTreeModel> model_;
-	std::auto_ptr<property_tree::InplaceWidget> widget_; // in-place widget
+	std::unique_ptr<PropertyTreeModel> model_;
+	std::unique_ptr<property_tree::InplaceWidget> widget_; // in-place widget
 	PropertyRow* widgetRow_;
 	vector<PropertyRowMenuHandler*> menuHandlers_;
 	IUIFacade* ui_;

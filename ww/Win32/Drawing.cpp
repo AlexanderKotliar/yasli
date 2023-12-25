@@ -28,9 +28,9 @@ static HBITMAP checkBitmap = ::LoadBitmap(0, (LPCTSTR)OBM_CHECK);
 
 namespace Win32{
 	
-int xround(float v)
+inline int xround(float v)
 {
-	return int(v + 0.5f);
+	return lroundf(v);
 }
 
 ww::Color toColor(COLORREF c)

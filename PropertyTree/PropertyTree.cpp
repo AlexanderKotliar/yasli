@@ -168,7 +168,7 @@ bool PropertyTree::onRowKeyDown(PropertyRow* row, const KeyEvent* ev)
 	case KEY_MENU:
 	{
 		if (ev->modifiers() == 0) {
-			std::auto_ptr<property_tree::IMenu> menu(ui()->createMenu());
+			std::unique_ptr<property_tree::IMenu> menu(ui()->createMenu());
 
 			if(onContextMenu(row, *menu)){
 				Rect rect(row->rect());
@@ -340,7 +340,7 @@ void PropertyTree::onRowRMBDown(PropertyRow* row, const Rect& rowRect, Point poi
 
 	if (menuRow) {
 		onRowSelected(menuRow, false, true);	
-		std::auto_ptr<property_tree::IMenu> menu(ui()->createMenu());
+		std::unique_ptr<property_tree::IMenu> menu(ui()->createMenu());
 		clearMenuHandlers();
 		if(onContextMenu(menuRow, *menu))
 			menu->exec(point);

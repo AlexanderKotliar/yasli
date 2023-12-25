@@ -81,7 +81,7 @@ bool PropertyRowContainer::onActivate( PropertyTree* tree, bool force)
 {
 	if(userReadOnly())
 		return false;
-	std::auto_ptr<property_tree::IMenu> menu(tree->ui()->createMenu());
+	std::unique_ptr<property_tree::IMenu> menu(tree->ui()->createMenu());
 	generateMenu(*menu, tree);
 	tree->_setPressedRow(this);
 	menu->exec(Point(widgetPos_, pos_.y() + tree->_defaultRowHeight()));
