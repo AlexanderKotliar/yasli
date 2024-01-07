@@ -127,6 +127,7 @@ RowType* PropertyOArchive::updateRow(const char* name, const char* label, const 
 			oldRow->setMultiValue(false);
 			newRow = static_cast<RowType*>(oldRow);
 			level.rowIndex = rowIndex + 1;
+			newRow->setLabel(label);
 		}
 		else{
 			//printf("creating new row '%s' '%s' '%s'\n", name, label, typeName);
@@ -184,7 +185,8 @@ PropertyRow* PropertyOArchive::updateRowPrimitive(const char* name, const char* 
 		oldRow->setMultiValue(false);
 		newRow.reset(static_cast<RowType*>(oldRow));
 		level.rowIndex = rowIndex + 1;
-	}
+    newRow->setLabel(label);
+  }
 	else{
 		//printf("creating new row '%s' '%s' '%s'\n", name, label, typeName);
 		newRow = new RowType();
