@@ -3,8 +3,7 @@ through PropertyTree (using PropertyI/OArchive-s). Label of the serialized value
 should start with sequence of such characters. 
 
 List of characters:
- "&" - [REMOVED] Put value to the "digest" of parent element.
- 
+
  "!" - Read only field. Prevents user from changing value of the field. 
 	   Doesn't affect nested members.
 
@@ -23,6 +22,8 @@ List of characters:
  ">size>" - Set minimal widget width to "size".
  
  "~" - Temporary element (with null Serializer).
+
+ "-" - Hide childrens.
  
  "[controls]" - Forward control characters to container elements.
 

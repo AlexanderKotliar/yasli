@@ -328,7 +328,7 @@ bool PropertyIArchive::openBlock(const char* name, const char* label)
 
 void PropertyIArchive::closeBlock()
 {
-	closeRow(currentNode_->name_ ? currentNode_->name_  : "block");
+	closeRow(currentNode_->name());
 }
 
 bool PropertyIArchive::openRow(const char* name, const char* label, const char* typeName)
@@ -377,6 +377,6 @@ bool PropertyIArchive::openRow(const char* name, const char* label, const char* 
 void PropertyIArchive::closeRow(const char* name)
 {
 	YASLI_ESCAPE(currentNode_, return);
-	YASLI_ASSERT(!strcmp(currentNode_->name_, name));
+	YASLI_ASSERT(!strcmp(currentNode_->name(), name));
 	currentNode_ = currentNode_->parent();
 }

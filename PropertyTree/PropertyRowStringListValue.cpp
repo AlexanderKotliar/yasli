@@ -12,13 +12,11 @@
 #include "Factory.h"
 #include "PropertyRowStringListValue.h"
 #include "PropertyTreeModel.h"
-#include "IDrawContext.h"
 #include "PropertyTree.h"
 #include "ConstStringList.h"
 
 #include "yasli/Archive.h"
 #include "yasli/ClassFactory.h"
-#include "IMenu.h"
 
 using yasli::StringList;
 using yasli::StringListValue;

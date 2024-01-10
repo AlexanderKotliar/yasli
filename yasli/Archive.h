@@ -74,10 +74,7 @@ public:
 		OUTPUT = 1 << 1,
 		TEXT = 1 << 2,
 		BINARY = 1 << 3,
-		EDIT = 1 << 4,
-		CUSTOM1 = 1 << 5,
-		CUSTOM2 = 1 << 6,
-		CUSTOM3 = 1 << 7
+		EDIT = 1 << 4
 	};
 
 	Archive(int caps)

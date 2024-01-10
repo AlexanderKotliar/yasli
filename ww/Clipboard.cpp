@@ -17,11 +17,9 @@
 #include "PropertyTree/PropertyTreeModel.h"
 #include "PropertyTree/PropertyOArchive.h"
 #include "PropertyTree/PropertyIArchive.h"
-#include "ww/PropertyEditor.h"
 #include "ww/Win32/Window32.h"
 #include "ww/SafeCast.h"
 
-#include "yasli/ClassFactory.h"
 #include "yasli/Serializer.h"
 #include "yasli/BinArchive.h"
 

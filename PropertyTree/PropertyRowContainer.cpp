@@ -149,7 +149,7 @@ void ContainerMenuHandler::onMenuRemoveAll()
 
 PropertyRow* PropertyRowContainer::defaultRow(PropertyTreeModel* model)
 {
-	PropertyRow* defaultType = model->defaultType(elementTypeName_);
+	PropertyRow* defaultType = model->defaultType(elementTypeName());
 	//YASLI_ASSERT(defaultType);
 	//YASLI_ASSERT(defaultType->numRef() == 1);
 	return defaultType;
@@ -157,7 +157,7 @@ PropertyRow* PropertyRowContainer::defaultRow(PropertyTreeModel* model)
 
 const PropertyRow* PropertyRowContainer::defaultRow(const PropertyTreeModel* model) const
 {
-	const PropertyRow* defaultType = model->defaultType(elementTypeName_);
+	const PropertyRow* defaultType = model->defaultType(elementTypeName());
 	return defaultType;
 }
 
@@ -277,7 +277,7 @@ const char* PropertyRowContainer::typeNameForFilter(PropertyTree* tree) const
 	if (defaultType)
 		return defaultType->typeNameForFilter(tree);
 	else
-		return elementTypeName_;
+		return elementTypeName();
 }
 
 bool PropertyRowContainer::onKeyDown(PropertyTree* tree, const KeyEvent* ev)

@@ -363,7 +363,7 @@ void PropertyRow::YASLI_SERIALIZE_METHOD(Archive& ar)
 	ar(ConstStringWrapper(constStrings_, name_), "name", "name");
 	ar(ConstStringWrapper(constStrings_, label_), "label", "label");
 	ar(ConstStringWrapper(constStrings_, typeName_), "type", "type");
-	ar(reinterpret_cast<std::vector<SharedPtr<PropertyRow> >&>(children_), "children", "!^children");	
+	ar(children_, "children", "!^children");	
 	if(ar.isInput()){
 		labelChanged_ = true;
 		layoutChanged_ = true;
@@ -1096,7 +1096,7 @@ void PropertyRow::intersect(const PropertyRow* row)
 	for(int i = 0; i < int(children_.size()); ++i)
 	{
 		PropertyRow* testRow = children_[i];
-		PropertyRow* matchingRow = row->findFromIndex(&indexSource, testRow->name_, testRow->typeName_, indexSource);
+		PropertyRow* matchingRow = row->findFromIndex(&indexSource, testRow->name(), testRow->typeName(), indexSource);
 		++indexSource;
 		if (matchingRow == 0) {
 			children_.erase(children_.begin() + i);

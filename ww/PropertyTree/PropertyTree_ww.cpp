@@ -13,17 +13,12 @@
 #include "ww/PropertyTree.h"
 #include "ww/PropertyTree/wwDrawContext.h"
 #include "ww/PropertyTree/TreeImpl.h"
-#include "PropertyTree/Serialization.h"
 #include "PropertyTree/PropertyTreeModel.h"
 #include "PropertyTree/PropertyRowContainer.h"
 #include "PropertyTree/PropertyRowPointer.h"
 #include "PropertyTree/Unicode.h"
-#include "PropertyTree/PropertyOArchive.h"
-#include "PropertyTree/PropertyIArchive.h"
 #include "ww/Window.h"
 #include "ww/Color.h"
-
-#include "yasli/ClassFactory.h"
 
 #include "ww/Clipboard.h"
 
@@ -34,9 +29,7 @@
 #include "ww/Entry.h"
 #include <crtdbg.h>
 
-#include "ww/PropertyEditor.h"
 #include "wwUIFacade.h"
-#include "wwDrawContext.h"
 #include "gdiplusUtils.h"
 
 #include <mmsystem.h>
