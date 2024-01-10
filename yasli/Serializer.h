@@ -110,7 +110,7 @@ public:
 	virtual bool next() = 0;
 
 	virtual bool operator()(Archive& ar, const char* name, const char* label) = 0;
-	virtual void serializeNewElement(Archive& ar, const char* name = "", const char* label = 0) const = 0;
+	virtual void serializeNewElement(Archive& ar, const char* name, const char* label = "&") const = 0;
 };
 
 template<class T, size_t Size>

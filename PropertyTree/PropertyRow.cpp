@@ -480,6 +480,7 @@ void PropertyRow::parseControlCodes(const char* ptr, bool changeLabel)
 		userWidgetSize_ = -1;
 		userHideChildren_ = false;
 	}
+  bool copyName = false;
 
 	while(true){
 		if(*ptr == '^'){
@@ -519,6 +520,9 @@ void PropertyRow::parseControlCodes(const char* ptr, bool changeLabel)
 				userReadOnlyRecurse_ = true;
 			userReadOnly_ = true;
 		}
+    else if (*ptr == '&') {
+      copyName = true;
+    }
 		else if(*ptr == '['){
 			++ptr;
 			PropertyRow::iterator it;
@@ -540,7 +544,7 @@ void PropertyRow::parseControlCodes(const char* ptr, bool changeLabel)
 	}
 
 	if (changeLabel)
-		labelUndecorated_ = ptr;
+		labelUndecorated_ = copyName ? name() : ptr;
 
 	labelChanged();
 }

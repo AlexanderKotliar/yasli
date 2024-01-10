@@ -24,6 +24,9 @@ List of characters:
  "~" - Temporary element (with null Serializer).
 
  "-" - Hide childrens.
+
+ "&" - Copy name into label. label = "&" by default. It allows short notation: ar(var, "var");
+	
  
  "[controls]" - Forward control characters to container elements.
 

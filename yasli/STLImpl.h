@@ -88,7 +88,7 @@ public:
 		// built-in types to zeros/false.
 		ElementInitializer() : value() {}
 	};
-	void serializeNewElement(Archive& ar, const char* name = "", const char* label = 0) const{
+	void serializeNewElement(Archive& ar, const char* name, const char* label = "&") const{
 		ElementInitializer element;
 		ar(element.value, name, label);
 	}

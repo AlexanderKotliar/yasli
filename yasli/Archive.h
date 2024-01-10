@@ -101,29 +101,29 @@ public:
 	}
 
 	virtual void warning(const char* message) {}
-	virtual bool operator()(bool& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(char& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(u8& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(i8& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(i16& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(u16& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(i32& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(u32& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(i64& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(u64& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(float& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(double& value, const char* name = "", const char* label = 0) { notImplemented(); return false; }
+	virtual bool operator()(bool& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(char& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(u8& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(i8& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(i16& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(u16& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(i32& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(u32& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(i64& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(u64& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(float& value, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(double& value, const char* name, const char* label = "&") { notImplemented(); return false; }
 
-	virtual bool operator()(StringInterface& value, const char* name = "", const char* label = 0)    { notImplemented(); return false; }
-	virtual bool operator()(WStringInterface& value, const char* name = "", const char* label = 0)    { notImplemented(); return false; }
-	virtual bool operator()(const Serializer& ser, const char* name = "", const char* label = 0) { notImplemented(); return false; }
-	virtual bool operator()(ContainerInterface& ser, const char* name = "", const char* label = 0) { return false; }
-	virtual bool operator()(PointerInterface& ptr, const char* name = "", const char* label = 0);
-	virtual bool operator()(Object& obj, const char* name = "", const char* label = 0) { return false; }
-	virtual bool operator()(KeyValueInterface& keyValue, const char* name = "", const char* label = 0) { return operator()(Serializer(keyValue), name, label); }
+	virtual bool operator()(StringInterface& value, const char* name, const char* label = "&")    { notImplemented(); return false; }
+	virtual bool operator()(WStringInterface& value, const char* name, const char* label = "&")    { notImplemented(); return false; }
+	virtual bool operator()(const Serializer& ser, const char* name, const char* label = "&") { notImplemented(); return false; }
+	virtual bool operator()(ContainerInterface& ser, const char* name, const char* label = "&") { return false; }
+	virtual bool operator()(PointerInterface& ptr, const char* name, const char* label = "&");
+	virtual bool operator()(Object& obj, const char* name, const char* label = "&") { return false; }
+	virtual bool operator()(KeyValueInterface& keyValue, const char* name, const char* label = "&") { return operator()(Serializer(keyValue), name, label); }
 
 	// No point in supporting long double since it is represented as double on MSVC
-	bool operator()(long double& value, const char* name = "", const char* label = 0)         { notImplemented(); return false; }
+	bool operator()(long double& value, const char* name, const char* label = "&")         { notImplemented(); return false; }
 
 	// block call are osbolete, please do not use
 	virtual bool openBlock(const char* name, const char* label) { return true; }
@@ -131,7 +131,7 @@ public:
 
 	// templated switch
 	template<class T>
-	bool operator()(const T& value, const char* name = "", const char* label = 0);
+	bool operator()(const T& value, const char* name, const char* label = "&");
 
 	template<class T>
 	T* context() const {

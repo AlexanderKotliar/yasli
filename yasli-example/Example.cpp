@@ -117,7 +117,7 @@ public:
 		strcpy(endBuf_, "END");
 	}
 	void serialize(Archive& ar){
-		ar(name_);
+		ar(name_, "");
 		ar(polyPtr_, "polyPtr");
 		ar(polyVector_, "polyVector");
 		ar(members_, "members");

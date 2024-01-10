@@ -27,25 +27,25 @@ public:
 	bool load(const char* filename);
 	bool open(const char* buffer, size_t length, bool free = false);
 
-	bool operator()(bool& value, const char* name = "", const char* label = 0) override;
-	bool operator()(char& value, const char* name = "", const char* label = 0) override;
-	bool operator()(float& value, const char* name = "", const char* label = 0) override;
-	bool operator()(double& value, const char* name = "", const char* label = 0) override;
-	bool operator()(i8& value, const char* name = "", const char* label = 0) override;
-	bool operator()(i16& value, const char* name = "", const char* label = 0) override;
-	bool operator()(i32& value, const char* name = "", const char* label = 0) override;
-	bool operator()(i64& value, const char* name = "", const char* label = 0) override;
-	bool operator()(u8& value, const char* name = "", const char* label = 0) override;
-	bool operator()(u16& value, const char* name = "", const char* label = 0) override;
-	bool operator()(u32& value, const char* name = "", const char* label = 0) override;
-	bool operator()(u64& value, const char* name = "", const char* label = 0) override;
+	bool operator()(bool& value, const char* name, const char* label = "&") override;
+	bool operator()(char& value, const char* name, const char* label = "&") override;
+	bool operator()(float& value, const char* name, const char* label = "&") override;
+	bool operator()(double& value, const char* name, const char* label = "&") override;
+	bool operator()(i8& value, const char* name, const char* label = "&") override;
+	bool operator()(i16& value, const char* name, const char* label = "&") override;
+	bool operator()(i32& value, const char* name, const char* label = "&") override;
+	bool operator()(i64& value, const char* name, const char* label = "&") override;
+	bool operator()(u8& value, const char* name, const char* label = "&") override;
+	bool operator()(u16& value, const char* name, const char* label = "&") override;
+	bool operator()(u32& value, const char* name, const char* label = "&") override;
+	bool operator()(u64& value, const char* name, const char* label = "&") override;
 
-	bool operator()(StringInterface& value, const char* name = "", const char* label = 0) override;
-	bool operator()(WStringInterface& value, const char* name = "", const char* label = 0) override;
-	bool operator()(const Serializer& ser, const char* name = "", const char* label = 0) override;
-	bool operator()(ContainerInterface& ser, const char* name = "", const char* label = 0) override;
-	bool operator()(KeyValueInterface& ser, const char* name = "", const char* label = 0) override;
-	bool operator()(PointerInterface& ser, const char* name = "", const char* label = 0) override;
+	bool operator()(StringInterface& value, const char* name, const char* label = "&") override;
+	bool operator()(WStringInterface& value, const char* name, const char* label = "&") override;
+	bool operator()(const Serializer& ser, const char* name, const char* label = "&") override;
+	bool operator()(ContainerInterface& ser, const char* name, const char* label = "&") override;
+	bool operator()(KeyValueInterface& ser, const char* name, const char* label = "&") override;
+	bool operator()(PointerInterface& ser, const char* name, const char* label = "&") override;
 
 	using Archive::operator();
 private:
