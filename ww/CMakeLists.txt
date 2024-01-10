@@ -219,6 +219,14 @@ set(SOURCES
 	Icons/check_tristate.xpm
 	)
 include_directories(. .. ../PropertyTree PropertyTree)
+
+if (USE_XMATH)
+    set(SOURCES ${SOURCES} 
+	Canvas.cpp Canvas.h	
+	Viewport2D.cpp Viewport2D.h)
+    include_directories(../..)
+endif()
+
 add_library(wWidgets ${SOURCES})
 source_group("" FILES ${SOURCES})
 target_link_libraries(wWidgets yasli)

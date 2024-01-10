@@ -392,7 +392,7 @@ BOOL ColorRampImpl::onMessageEraseBkgnd(HDC dc)
 
 BOOL ColorRampImpl::onMessageSetCursor(HWND window, USHORT hitTest, USHORT message)
 {
-	HCURSOR cursor = ::LoadCursor(0, MAKEINTRESOURCE(IDC_CROSS));
+	HCURSOR cursor = (HCURSOR)::LoadCursor(0, MAKEINTRESOURCE(IDC_CROSS));
 	::SetCursor(cursor);
 	return FALSE;
 }
