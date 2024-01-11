@@ -44,7 +44,6 @@ public:
 	bool operator()(WStringInterface& value, const char* name, const char* label = "&") override;
 	bool operator()(const Serializer& ser, const char* name, const char* label = "&") override;
 	bool operator()(ContainerInterface& ser, const char* name, const char* label = "&") override;
-	bool operator()(KeyValueInterface& ser, const char* name, const char* label = "&") override;
 	bool operator()(PointerInterface& ser, const char* name, const char* label = "&") override;
 
 	using Archive::operator();

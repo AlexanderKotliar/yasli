@@ -15,7 +15,6 @@
 #include <algorithm>
 
 #include "yasli/Serializer.h"
-#include "yasli/KeyValue.h"
 
 namespace yasli{ class Archive; }
 

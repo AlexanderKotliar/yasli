@@ -12,7 +12,6 @@
 #include <list>
 #include "yasli/Archive.h"
 #include "yasli/Serializer.h"
-#include "yasli/KeyValue.h"
 
 namespace yasli {
 
@@ -192,25 +191,6 @@ inline bool YASLI_SERIALIZE_OVERRIDE(yasli::Archive& ar, std::wstring& value, co
 
 namespace yasli {
 
-template<class V>
-struct StdStringPair : yasli::KeyValueInterface
-{
-	const char* get() const { return pair_.first.c_str(); }
-	void set(const char* key) { pair_.first.assign(key); }
-	bool serializeValue(yasli::Archive& ar, const char* name, const char* label) 
-	{
-		return ar(pair_.second, name, label);
-	}
-
-	StdStringPair(std::pair<std::string, V>& pair)
-	: pair_(pair)
-	{
-	}
-
-
-	std::pair<std::string, V>& pair_;
-};
-
 template<class K, class V>
 struct StdPair : std::pair<K, V>
 {
@@ -233,8 +213,6 @@ namespace std{
 template<class V>
 bool YASLI_SERIALIZE_OVERRIDE(yasli::Archive& ar, std::pair<std::string, V>& pair, const char* name, const char* label)
 {
-	// yasli::StdStringPair<V> keyValue(pair);
-	// return ar(static_cast<yasli::KeyValueInterface&>(keyValue), name, label);
   return ar(static_cast<yasli::StdPair<std::string, V>&>(pair), name, label);
 }
 

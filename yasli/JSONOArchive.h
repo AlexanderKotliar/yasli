@@ -45,7 +45,6 @@ public:
 	bool operator()(WStringInterface& value, const char* name, const char* label = "&") override;
 	bool operator()(const Serializer& ser, const char* name, const char* label = "&") override;
 	bool operator()(ContainerInterface& ser, const char* name, const char* label = "&") override;
-	bool operator()(KeyValueInterface& keyValue, const char* name, const char* label = "&") override;
 	bool operator()(PointerInterface& ser, const char* name, const char* label = "&") override;
 
 	using Archive::operator();
@@ -86,7 +85,6 @@ private:
 	int textWidth_;
 	std::string fileName_;
 	int compactOffset_;
-	bool isKeyValue_;
 };
 
 }

@@ -15,7 +15,6 @@
 #include "yasli/Config.h"
 #include "yasli/Helpers.h"
 #include "yasli/Serializer.h"
-#include "yasli/KeyValue.h"
 #include "yasli/TypeID.h"
 
 namespace yasli{
@@ -26,7 +25,6 @@ template<class T>
 bool YASLI_SERIALIZE_OVERRIDE(Archive& ar, T& object, const char* name, const char* label);
 
 class Object;
-class KeyValueInterface;
 class EnumDescription;
 template <class Enum>
 EnumDescription& getEnumDescription();
@@ -120,7 +118,6 @@ public:
 	virtual bool operator()(ContainerInterface& ser, const char* name, const char* label = "&") { return false; }
 	virtual bool operator()(PointerInterface& ptr, const char* name, const char* label = "&");
 	virtual bool operator()(Object& obj, const char* name, const char* label = "&") { return false; }
-	virtual bool operator()(KeyValueInterface& keyValue, const char* name, const char* label = "&") { return operator()(Serializer(keyValue), name, label); }
 
 	// No point in supporting long double since it is represented as double on MSVC
 	bool operator()(long double& value, const char* name, const char* label = "&")         { notImplemented(); return false; }

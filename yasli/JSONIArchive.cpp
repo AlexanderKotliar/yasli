@@ -842,46 +842,6 @@ bool JSONIArchive::operator()(const Serializer& ser, const char* name, const cha
     return false;
 }
 
-bool JSONIArchive::operator()(KeyValueInterface& keyValue, const char* name, const char* label)
-{
-	Token nextName;
-	if(!stack_.empty() && stack_.back().isContainer) {
-		readToken();
-		if(isName(token_) && checkStringValueToken()) {
-			string key;
-			unescapeString(unescapeBuffer_, key, token_.start + 1, token_.end - 1);
-			keyValue.set(key.c_str());
-			readToken();
-			if(!expect(':'))
-				return false;
-			if(!keyValue.serializeValue(*this, "", 0))
-				return false;
-			return true;
-		}
-		else {
-			putToken();
-			return false;
-		}
-	}
-	else if(findName("", &nextName)) {
-		string key;
-		unescapeString(unescapeBuffer_, key, nextName.start + 1, nextName.end - 1);
-		keyValue.set(key.c_str());
-		stack_.push_back(Level());
-		stack_.back().isKeyValue = true;
-
-		bool result = keyValue.serializeValue(*this, "", 0);
-		if(stack_.empty()) {
-			// TODO: diagnose
-			return false;
-		}
-		stack_.pop_back();
-		return result;
-	}
-	return false;
-}
-
-
 bool JSONIArchive::operator()(PointerInterface& ser, const char* name, const char* label)
 {
 	if (findName(name)) {
