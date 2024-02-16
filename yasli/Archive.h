@@ -123,7 +123,7 @@ public:
 	bool operator()(long double& value, const char* name, const char* label = "&")         { notImplemented(); return false; }
 
 	// block call are osbolete, please do not use
-	virtual bool openBlock(const char* name, const char* label) { return true; }
+	virtual bool openBlock(const char* name, const char* label = "&") { return true; }
 	virtual void closeBlock() {}
 
 	// templated switch

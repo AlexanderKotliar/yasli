@@ -163,6 +163,8 @@ int EntryImpl::onMessageGetDlgCode(int keyCode, MSG* msg)
 		}
 		if (key == VK_TAB)
 			return 0;
+		if (!owner_->hasFocus())
+			return 0;
 	}
 	return DLGC_WANTMESSAGE;
 }

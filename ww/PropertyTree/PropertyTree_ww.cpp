@@ -237,6 +237,8 @@ void PropertyTree::pasteRow(PropertyRow* row)
 		parent->setLabelChanged();
 		parent->setLabelChangedToChildren();
 		model()->rowChanged(parent);
+		if (filterMode_)
+			onFilterChanged();
 	}
 	else
 		YASLI_ASSERT(0 && "Unable to paste element!"); 
